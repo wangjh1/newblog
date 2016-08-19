@@ -13,7 +13,7 @@ class BaseFunction
     //获取后台配置信息
     public static function getconfig()
     {
-        $configPath = Yii::getAlias('@app').'\\'.'web\\config.php';
+        $configPath = Yii::getAlias('@webroot').'/config.php';
 
         if (file_exists($configPath))
         {
