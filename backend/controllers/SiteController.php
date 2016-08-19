@@ -51,11 +51,10 @@ class SiteController extends Controller
     {
 
         //网站配置的路径
-        $configPath = Yii::getAlias('@app').'\\'.'web\\config.php';
+        $configPath = Yii::getAlias('@webroot').'/config.php';
         //邮件配置路径
         $mail = WEB_PATHS.'/common/config/main-local.php';
-
-
+        //echo $configPath;die;
         if(file_exists($configPath) && file_exists($mail))
         {
             //邮件配置
