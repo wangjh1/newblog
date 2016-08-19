@@ -99,7 +99,7 @@ class WebMenuController extends Controller
     {
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'id' => $_GET['pid']]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -117,7 +117,7 @@ class WebMenuController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'id' => $_GET['pid']]);
     }
 
     /**

@@ -151,44 +151,44 @@ class WebContentController extends Controller
         {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-        $transaction = Yii::$app->db->beginTransaction();
-        try{
-            $cre = $model->load(Yii::$app->request->post());
-            if(!$cre)
-                throw new \Exception('操作失败！');
-            $sre = $model->save();
-            if(!$sre)
-                throw new \Exception('操作失败！');
-            $rows = [];
-            $rows['WebContentPost']['content_id'] = $model->id;
-            $rows['WebContentPage']['content_id'] = $model->id;
-            $brows = ArrayHelper::merge(Yii::$app->request->post(), $rows);
-            //print_r($brows);die;
-            $bre = $bodymodel->load($brows);
-            if(!$bre)
-                throw new \Exception('操作失败！');
-            $tre = $bodymodel->save();
-            if(!$tre)
-                throw new \Exception('操作失败！');
-            //以上执行都成功，则对数据库进行实际执行
-            $transaction->commit();
-            \Yii::$app->getSession()->setFlash('success', '添加成功');
-            return $this->redirect($_GET['act']);
-        }catch (\Exception $e){
-            //如果抛出错误则进入catch，先callback，然后捕获错误，返回错误
-            $transaction->rollBack();
-            \Yii::$app->getSession()->setFlash('error', $e->getMessage());
-            //return Helper::arrayReturn(['status'=>false,'msg'=>$e->getMessage()]);
+        if (Yii::$app->request->post())
+        {
+            $transaction = Yii::$app->db->beginTransaction();
+            try{
+                $cre = $model->load(Yii::$app->request->post());
+                if(!$cre)
+                    throw new \Exception('操作失败！');
+                $sre = $model->save();
+                if(!$sre)
+                    throw new \Exception('操作失败！');
+                $rows = [];
+                $rows['WebContentPost']['content_id'] = $model->id;
+                $rows['WebContentPage']['content_id'] = $model->id;
+                $brows = ArrayHelper::merge(Yii::$app->request->post(), $rows);
+                //print_r($brows);die;
+                $bre = $bodymodel->load($brows);
+                if(!$bre)
+                    throw new \Exception('操作失败！');
+                $tre = $bodymodel->save();
+                if(!$tre)
+                    throw new \Exception('操作失败！');
+                //以上执行都成功，则对数据库进行实际执行
+                $transaction->commit();
+                \Yii::$app->getSession()->setFlash('success', '添加成功');
+                return $this->redirect($_GET['act']);
+            }catch (\Exception $e){
+                //如果抛出错误则进入catch，先callback，然后捕获错误，返回错误
+                $transaction->rollBack();
+                \Yii::$app->getSession()->setFlash('error', $e->getMessage());
+                //return Helper::arrayReturn(['status'=>false,'msg'=>$e->getMessage()]);
+            }
         }
-        //print_r(Yii::$app->request->post());die;
-       /* if ($model->load(Yii::$app->request->post()) && $model->save()){
-            $bodymodel->load(Yii::$app->request->post()) && $bodymodel->save();
-            return $this->redirect($_GET['act']);
-        } else {*/
-            return $this->render('create', [
-                'model' => $model,
-                'bodymodel' => $bodymodel,
-            ]);
+
+
+        return $this->render('create', [
+            'model' => $model,
+            'bodymodel' => $bodymodel,
+        ]);
 
     }
 
