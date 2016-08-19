@@ -135,8 +135,34 @@ class SiteController extends Controller
         return $this->render('port');
     }
 
+    /*public function send()
+    {
+        $mail = \Yii::$app->mailer->compose()
+            ->setFrom(['627658543@qq.com' => 'Yii 中文网'])
+            ->setTo('2445648562@qq.com')
+            ->setSubject('邮件发送配置')
+            //->setTextBody('Yii中文网教程真好 www.yii-china.com')   //发布纯文字文本
+            ->setHtmlBody("<br>Yii中文网教程真好！www.yii-china.com")    //发布可以带html标签的文本
+            ->send();
+        if($mail)
+            echo 'success';
+        else
+            echo 'fail';
+    }*/
     public function actionSignup()
     {
+        $mail = \Yii::$app->mailer->compose()
+            ->setFrom(['627658543@qq.com' => 'Yii 中文网'])
+            ->setTo('2880326171@qq.com')
+            ->setSubject('邮件发送配置')
+            //->setTextBody('Yii中文网教程真好 www.yii-china.com')   //发布纯文字文本
+            ->setHtmlBody("<br>Yii中文网教程真好！www.yii-china.com")    //发布可以带html标签的文本
+            ->send();
+        if($mail)
+            echo 'success';
+        else
+            echo 'fail';
+
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {

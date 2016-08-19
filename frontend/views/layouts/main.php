@@ -42,7 +42,7 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => '首页', 'url' => ['/site/index']],
-        ['label' => '关于我', 'url' => ['/site/about']],
+        ['label' => '关于我', 'url' => ['/site/about'], 'items'=>[['label' => '就是我', 'url' => ['/site/about'], ]]],
         ['label' => '博客', 'url' => ['/site/blog']],
         ['label' => '投资', 'url' => ['/site/port']],
         ['label' => '联系', 'url' => ['/site/contact']],
