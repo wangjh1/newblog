@@ -92,7 +92,7 @@ class WebContentController extends Controller
         if ($post_data)
         {
             //网站配置的路径
-            $configPath = Yii::getAlias('@app').'\\'.'web\\config.php';
+            $configPath = Yii::getAlias('@webroot').'/config.php';
             $config =  BaseFunction::getconfig();
             $rows[$_GET['act']] = $post_data['web_content_type'];
             $config_rows = array_merge($config, $rows);
