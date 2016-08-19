@@ -39,7 +39,20 @@ array_unshift($datas, array('id'=> 0, 'name'=> '=根节点='));
 
     <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
 
+    <div class="form-group">
+        <label class="col-lg-1 control-label" for="">菜单类型</label>
 
+        <div class="col-lg-5"><input type="hidden" name="" value="">
+            <div id="" class="radiostyle">
+                <label><input type="radio" name="page" value="1"> 文章分类</label>
+                <label><input type="radio" name="page" value="2"> 单页面</label>
+                <label><input type="radio" name="page" value="3"> 单篇文章</label>
+                <label><input type="radio" name="page" value="4"> 自定义链接</label>
+            </div>
+        </div>
+        <div class="col-lg-5"><div class="help-block"></div></div>
+    </div>
+    <?= $form->field($model, 'type_id')->textInput() ?>
     <?= $form->field($model, 'target')->radioList(['0' =>'当前窗口', '1' => '新窗口'], ['class'=>'radiostyle'])?>
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
@@ -56,7 +69,6 @@ array_unshift($datas, array('id'=> 0, 'name'=> '=根节点='));
 
     <?= $form->field($model, 'sort_num')->textInput() ?>
 
-    <?= $form->field($model, 'type_id')->textInput() ?>
     <div class="box-footer">
     <div class="form-group">
         <label class="col-lg-1 control-label buttons"></label>

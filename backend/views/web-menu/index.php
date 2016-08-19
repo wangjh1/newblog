@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <td><?= Html::encode($val['id']) ?></td>
                 <td><?= Html::encode($val['name']) ?></td>
                 <td><?= Html::encode($val['url']) ?></td>
-                <td><?= Html::encode($val['target']) ?></td>
+                <td><?php if ($val['target'] == 0 ){ echo '当前窗口';}else{echo '新窗口';} ?></td>
                 <td><?= Html::encode($val['sort_num']) ?></td>
                 <td>
                     <?php
@@ -65,8 +65,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 </td>
                 <td>
-                    <a href="<?= Url::to(['web-menu/update', 'id' => $val['id']])?>" title="Update" data-pjax="0"><span class="glyphicon glyphicon-pencil"></span></a>
-                    <a href="<?= Url::to(['web-menu/delete', 'id' => $val['id']])?>" title="Delete" data-confirm="Are you sure you want to delete this item?" data-method="post" data-pjax="0"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a href="<?= Url::to(['web-menu/update', 'id' => $val['id'], 'pid' => Yii::$app->request->get('id')])?>" title="Update" data-pjax="0"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="<?= Url::to(['web-menu/delete', 'id' => $val['id'], 'pid' => Yii::$app->request->get('id')])?>" title="Delete" data-confirm="Are you sure you want to delete this item?" data-method="post" data-pjax="0"><span class="glyphicon glyphicon-trash"></span></a>
 
                 </td>
             </tr>
