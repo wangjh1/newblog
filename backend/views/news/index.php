@@ -71,13 +71,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 "filter" => NewsSearch::dropDown("places"),
             ],
-            /*[
+            [
                 'attribute' => 'places',
                 //'class' => 'form-control',
                 'value'=>function ($dataProvider,$key,$index,$column){
                     return $dataProvider->places==1?'男':'女';
                 },
-
+                'contentOptions' => ['class' => 'form-control'],
                 //在搜索条件（过滤条件）中使用下拉框来搜索
                 'filter' => ['1'=>'男','0'=>'女', 'class'=>'form-control'],
                 //or
@@ -85,7 +85,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'places',['1'=>'男','0'=>'女'],
                     ['prompt'=>'全部'],['class'=>'form-control']
                 )
-            ],*/
+            ],
             //'id',
             //'columns_id',
             //'exsort',

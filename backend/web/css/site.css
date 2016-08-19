@@ -89,3 +89,31 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
+.content .buttons{
+    margin-left: 15px;
+}
+.content .buttons1{
+    margin-left: -15px;
+}
+/*.form-lefts{
+    background: #fff;
+    border: 1px solid #bfbfbf;
+    margin-right: 20px;
+    float: left;
+}
+.form-rights{
+    background: #fff;
+    float: left;
+    border: 1px solid #bfbfbf;
+    margin-left: 20px;
+}*/
+
+.radiostyle label{
+    font-weight: normal;
+}
+#myTabContent{
+    /*margin-top: 20px;*/
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background: #fff;
+}

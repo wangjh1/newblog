@@ -55,7 +55,7 @@ return [
                 ],
             ],
         ],
-        /*'cache' => [
+        'cache' => [
             'class' => 'yii\caching\MemCache',
             'servers' => [
                 [
@@ -63,14 +63,14 @@ return [
                     'port' => 11211,
                     'weight' => 100,
                 ],
-                'useMemcached' => true,
+                /*'useMemcached' => true,
                 'serializer' => false,
                 'options' => [
                     'Memcached::OPT_COMPRESSION' => false,
-                ],
+                ],*/
 
             ],
-        ],*/
+        ],
         /* 'view' => [
              'theme' => [
                  'pathMap' => [

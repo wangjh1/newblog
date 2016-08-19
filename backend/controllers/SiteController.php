@@ -2,10 +2,12 @@
 namespace backend\controllers;
 
 use Yii;
-use yii\filters\AccessControl;
 use yii\web\Controller;
-use common\models\LoginForm;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
+use yii\web\NotFoundHttpException;
+use common\models\LoginForm;
 
 /**
  * Site controller
@@ -18,20 +20,6 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['login', 'error'],
-                        'allow' => true,
-                    ],
-                    [
-                        'actions' => ['logout', 'index'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -57,9 +45,65 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+
+    //网站系统设置
+    public function actionSystem()
+    {
+
+        //网站配置的路径
+        $configPath = Yii::getAlias('@app').'\\'.'web\\config.php';
+        //邮件配置路径
+        $mail = WEB_PATHS.'/common/config/main-local.php';
+
+
+        if(file_exists($configPath) && file_exists($mail))
+        {
+            //邮件配置
+            $mail_rows = require($mail);
+            $config = array_merge(require($configPath), $mail_rows['components']['mailer']['transport']);
+        }
+        else
+        {
+            throw new NotFoundHttpException('网站配置文件不存在');
+
+        }
+
+        if(!empty($_POST) && isset($_POST['submit']))
+        {
+            $newconfig = $_POST;
+            $mailconfig['components']['mailer']['transport'] = $newconfig['mail'];
+            $mailconfig = ArrayHelper::merge($mail_rows, $mailconfig);
+            unset($newconfig['mail']);
+            //print_r($_POST);die;
+            $config = array_merge(require($configPath), $newconfig);
+
+            $config_content = var_export($config, true);
+            $mail_content = var_export($mailconfig, true);
+
+            if (is_writeable($configPath) && is_writeable($mail))
+            {
+                if( file_put_contents($configPath, "<?php \r\nreturn " . $config_content . ';') && file_put_contents($mail, "<?php \r\nreturn " . $mail_content . ';'))
+                {
+                    \Yii::$app->getSession()->setFlash('success', "网站配置成功！");
+                    return $this->redirect(Url::toRoute('system'));
+                }
+                else
+                {
+                    \Yii::$app->getSession()->setFlash('error', "网站配置失败！");
+                    return $this->redirect(Url::toRoute('system'));
+                }
+            }
+            else
+            {
+                \Yii::$app->getSession()->setFlash('error', "此文件不可写！");
+                return $this->redirect(Url::toRoute('system'));
+            }
+
+        }
+        return $this->render('system', ['config'=>$config]);
+    }
     public function actionDel()
     {
-        echo 222;die;
         Yii::$app->cache->flush();
         return $this->goBack();
     }

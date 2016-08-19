@@ -9,6 +9,7 @@ namespace backend\assets;
 
 use yii\web\AssetBundle;
 
+
 /**
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
@@ -26,4 +27,9 @@ class AppAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
+    public static function addScript($view, $jsfile) {
+        $view->registerJsFile($jsfile, [AppAsset::className(), 'depends' => 'backend\assets\AppAsset']);
+    }
+
+
 }
