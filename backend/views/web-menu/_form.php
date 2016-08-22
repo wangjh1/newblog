@@ -39,7 +39,7 @@ array_unshift($datas, array('id'=> 0, 'name'=> '=根节点='));
 
     <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
 
-    <div class="form-group">
+   <!-- <div class="form-group">
         <label class="col-lg-1 control-label" for="">菜单类型</label>
 
         <div class="col-lg-5"><input type="hidden" name="" value="">
@@ -51,8 +51,7 @@ array_unshift($datas, array('id'=> 0, 'name'=> '=根节点='));
             </div>
         </div>
         <div class="col-lg-5"><div class="help-block"></div></div>
-    </div>
-    <?= $form->field($model, 'type_id')->textInput() ?>
+    </div>-->
     <?= $form->field($model, 'target')->radioList(['0' =>'当前窗口', '1' => '新窗口'], ['class'=>'radiostyle'])?>
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
