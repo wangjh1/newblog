@@ -10,20 +10,34 @@ use Yii;
 
 class UnlimitCat {
 
-    /*public function getRows($data, $pid)
+    //前台导航菜单
+    public function getRows($data, $pid)
     {
         $rows = '';
+        $menu = [];
         foreach ($data as $k => $v)
         {
-            if ($v['parent_id'] == $pid)
-            {         //父亲找到儿子.
-                $v['children'] = $this->getRows($data, $v['id']);
-                $rows[] = $v;
-                //unset($data[$k]);
+            $menu['url'] = [];
+            if ($v['status'] == 1)
+            {
+                if ($v['parent_id'] == $pid)
+                {   //父亲找到儿子.
+                    $menu['label'] = $v['name'];
+                    $menu['url'][] = $v['url'];
+                    $menu['target'] = $v['target'];
+                    $menu['items'] = $this->getRows($data, $v['id']);
+                    if (empty($menu['items']))
+                    {
+                        unset($menu['items']);
+                    }
+                    $rows[] = $menu;
+                    //unset($data[$k]);
+                }
             }
+
         }
         return $rows;
-    }*/
+    }
     public function genCate($data, $pid = 0, $level = 0)
     {
         //层数大于等于10停止
