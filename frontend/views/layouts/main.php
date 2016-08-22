@@ -6,9 +6,14 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use frontend\widgets\Alert;
 use yii\widgets\ActiveForm;
+use backend\models\WebMenu;
+use common\library\UnlimitCat;
 /* @var $this \yii\web\View */
 /* @var $content string */
-
+$menu = new WebMenu();
+$menu = $menu::find()->orderBy('sort_num DESC')->Asarray()->all();
+$tree = new UnlimitCat();
+$rows = $tree->getRows($menu, 0);
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -20,33 +25,23 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <?=Html::cssFile('@web/css/style.css')?>
-    <?=Html::cssFile('@web/css/index.css')?>
     <?=Html::cssFile('@web/css/font-awesome.css')?>
-
-    <?/*=Html::cssFile('@web/css/bootstrap.min.css')*/?>
-    <?/*=Html::cssFile('@web/css/templatemo_style_fix_menu.css')*/?>
-    <?/*=Html::cssFile('@web/css/bootstrap-responsive.min.css')*/?>
-    <?/*=Html::cssFile('@web/css/templatemo_style.css')*/?>
+    <?=Html::cssFile('@web/css/app.css')?>
 </head>
 <body>
 <?php $this->beginBody() ?>
-<div class="wrap">
+<?php $menuItems  = $rows?>
+<div id="page-container" class=" header-fixed-top">
+    <div id="main-container">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::t('common', 'My Company'),
+        'brandLabel' =>"<img style='display: inline' src=". Yii::$app->request->getBaseUrl(). "/images/small.png>".Yii::t('common', 'My Company'),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
+            'img' =>'#'
         ],
     ]);
-    $menuItems = [
-        ['label' => '首页', 'url' => ['/site/index']],
-        ['label' => '关于我', 'url' => ['/site/about'], 'items'=>[['label' => '就是我', 'url' => ['/site/about'], ]]],
-        ['label' => '博客', 'url' => ['/site/blog']],
-        ['label' => '投资', 'url' => ['/site/port']],
-        ['label' => '联系', 'url' => ['/site/contact']],
-    ];
     $menuIrignt = [];
     if (Yii::$app->user->isGuest) {
         $menuIrignt[] = ['label' => '注册', 'url' => ['/site/signup']];
@@ -81,7 +76,7 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 
-    <div class="container">
+    <div class="page-content">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
@@ -172,9 +167,7 @@ AppAsset::register($this);
         <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
     </footer>
-<?php
-//$this->registerJsFile('@web/js/bootstrap.min.js');
-?>
+</div>
 <?php
 $this->registerJs('
            $("#artCarousel").carousel({

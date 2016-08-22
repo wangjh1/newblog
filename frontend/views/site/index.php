@@ -5,6 +5,8 @@ use \yii\helpers\Url;
 /* @var $this yii\web\View */
 $this->title = 'My Yii Application';
 ?>
+<?=Html::cssFile('@web/css/style.css')?>
+<?=Html::cssFile('@web/css/index.css')?>
 <div class="row">
     <div class="col-lg-9">
         <!--轮播 -->
