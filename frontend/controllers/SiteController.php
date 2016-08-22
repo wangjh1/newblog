@@ -13,6 +13,8 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use backend\models\News;
+use backend\models\WebMenu;
+use common\library\UnlimitCat;
 /**
  * Site controller
  */
@@ -65,11 +67,33 @@ class SiteController extends Controller
         ];
     }
 
+    public function init()
+    {
+
+    }
+
     public function actionIndex()
     {
+
+        /*$menuItems = [
+            ['label' => '首页', 'url' => ['/site/index']],
+            ['label' => '关于我', 'url' => ['/site/about']],
+            ['label' => '博客', 'url' => ['/site/blog'], 'data-target' => '_blank'],
+            ['label' => '投资', 'url' => ['/site/port']],
+            ['label' => '联系', 'url' => ['/site/contact']],
+        ];*/
+        /*$menu = new WebMenu();
+        $menu = $menu::find()->orderBy('sort_num DESC')->Asarray()->all();
+        $tree = new UnlimitCat();
+        $rows = $tree->getRows($menu, 0);
+
+        print_r($rows);die;
+        $view = Yii::$app->view;
+        $view -> params['layoutData'] = $rows;*/
+
         $model = new News();
         $news = $model::find()->all();
-        return $this->render('index', [
+        return $this->render('indexs', [
             'news' => $news,
         ]);
     }
