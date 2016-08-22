@@ -10,6 +10,8 @@ use common\library\BaseFunction;
 use common\library\UnlimitCat;
 use common\library\Constants;
 use backend\models\WebType;
+use backend\models\WebContentPost;
+
 /**
  * WebContentSearch represents the model behind the search form about `backend\models\WebContent`.
  */
@@ -151,5 +153,21 @@ class WebContentSearch extends WebContent
         //返回关联数组，用户下拉的filter实现
         else
             return array_key_exists($column, $dropDownList) ? $dropDownList[$column] : false;
+    }
+
+    public function getPost()
+    {
+        $post = new WebContentPost();
+        // 第一个参数为要关联的子表模型类名，
+        // 第二个参数指定 通过子表的customer_id，关联主表的id字段
+        return $this->hasOne($post::className(), ['content_id' => 'id']);
+    }
+
+    public function getPage()
+    {
+        $page = new WebContentPage();
+        // 第一个参数为要关联的子表模型类名，
+        // 第二个参数指定 通过子表的customer_id，关联主表的id字段
+        return $this->hasOne($page::className(), ['content_id' => 'id']);
     }
 }

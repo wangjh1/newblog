@@ -44,4 +44,11 @@ class WebContentPost extends \yii\db\ActiveRecord
             'body' => Yii::t('app', 'Body'),
         ];
     }
+    public function getContent()
+    {
+        $content = new WebContent();
+        // 第一个参数为要关联的子表模型类名，
+        // 第二个参数指定 通过子表的customer_id，关联主表的id字段
+        return $this->hasOne($content::className(), ['id' => 'content_id']);
+    }
 }
