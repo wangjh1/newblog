@@ -15,20 +15,20 @@ $this->params['breadcrumbs'][] = ['label' => $news->title];*/
 <div class="row">
     <div class="col-lg-9">
         <div class="page-title  data-id="226">
-            <h1><?= Html::encode($news->title) ?>（附演示地址） <span>[基础教程]</span></h1>
-            <span>作者：<a href="/member/index/1.html">上班偷偷打酱油</a></span>
-            <span>发布于：2016-05-05</span>
-            <span>浏览：6344次</span>
+            <h1><?= Html::encode($data[0]['title']) ?>（附演示地址） <span>[基础教程]</span></h1>
+            <span>作者：<a href="#"><?= Html::encode($data[0]['user_name']) ?></a></span>
+            <span>发布于：<?php echo date('Y-m-m', $data[0]['created_at'])?></span>
+            <span>浏览：<?= Html::encode($data[0]['view_count']) ?></span>
             <span><a href="javascript:;" class="j-collect">收藏</a></span>
         </div>
 
 
         <div class="page-content">
-            <?php echo $news->content; ?>
+            <?php echo $data[0]['body']; ?>
         </div>
         <div class="post-donate">
             <span>如果文章对您有所帮助，希望继续支持我们，您的支持是我们最大的动力</span>
-            <a href="/donate/index.html" class="btn btn-success">￥打赏</a>
+            <a href="#" class="btn btn-success">￥打赏</a>
         </div>
         <div class="page-tag">
             <b>标签：</b>
