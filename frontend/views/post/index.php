@@ -33,8 +33,7 @@ $this->title = 'My Yii Application';
                                 }else{
                                     echo IMG_PATHS.$val['thumb'] ;
                                 }
-                                ?>"
-                                     alt="<?= Html::encode($val['title'])?>">
+                                ?>" alt="<?= Html::encode($val['title'])?>">
                             </a>
                         </div>
                         <div class="col-lg-8 btn-group">
