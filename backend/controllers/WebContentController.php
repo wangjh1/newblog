@@ -218,7 +218,7 @@ class WebContentController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
 
-
+        //print_r(Yii::$app->request->post());die;
         if ($model->load(Yii::$app->request->post()) && $model->save() &&
             $bodymodels->load(Yii::$app->request->post()) && $bodymodels->save())
         {
