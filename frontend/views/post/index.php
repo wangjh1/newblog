@@ -31,10 +31,9 @@ $this->title = 'My Yii Application';
                                 <?php if (!$val['thumb']){
                                     echo Yii::$app->request->getBaseUrl().'/images/notice.jpg';
                                 }else{
-                                    Html::encode($val['thumb']) ;
+                                    echo IMG_PATHS.$val['thumb'] ;
                                 }
                                 ?>"
-
                                      alt="<?= Html::encode($val['title'])?>">
                             </a>
                         </div>
