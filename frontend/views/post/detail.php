@@ -6,9 +6,9 @@ use yii\bootstrap\Modal;
 /* @var $this yii\web\View */
 /* @var $model app\models\ColumnsType */
 
-/*$this->params['breadcrumbs'][] = ['label' => '文章', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $news->title];*/
-
+$this->title = $data[0]['title'];
+$this->params['breadcrumbs'][] = ['label' => '文章', 'url' => ['post/index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <?=Html::cssFile('@web/css/article.css')?>
 <div class="container">
@@ -21,7 +21,6 @@ $this->params['breadcrumbs'][] = ['label' => $news->title];*/
             <span>浏览：<?= Html::encode($data[0]['view_count']) ?></span>
             <span><a href="javascript:;" class="j-collect">收藏</a></span>
         </div>
-
 
         <div class="page-content">
             <?php echo $data[0]['body']; ?>
@@ -54,62 +53,32 @@ $this->params['breadcrumbs'][] = ['label' => $news->title];*/
         <div class="panel">
             <div class="panel-title box-title">
                 <span>最新文章</span>
-                <span class="pull-right"><a href="/post/index.html" class="font-12">更多»</a></span>
+<!--                <span class="pull-right"><a href="/post/index.html" class="font-12">更多»</a></span>-->
             </div>
             <div class="new last-post J_lastTime">
                 <ul>
-                    <li class="hov">
-                        <a href="/post/detail/354.html" target="_blank">
+                    <?php foreach ($new as $kn=>$vn) :?>
+                    <li class="">
+                        <a href="<?= Url::to(['post/detail', 'id'=>$vn['id']])?>" target="_blank">
                             <div class="time">
-                                <span class="r">21</span>/<span class="y">07月</span>
+                                <span class="r"><?php echo date('d', $vn['created_at'])?></span>/<span class="y"><?php echo date('m', $vn['created_at'])?></span>
                             </div>
-                            <div class="title">网站地图的创建与提交</div>
+                            <div class="title"><?= Html::encode($vn['title'])?></div>
                         </a>
                     </li>
-                    <li>
-                        <a href="/post/detail/353.html" target="_blank">
-                            <div class="time">
-                                <span class="r">21</span>/<span class="y">07月</span>
-                            </div>
-                            <div class="title">yii2-bootstrap轮播图插件Carousel</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/post/detail/352.html" target="_blank">
-                            <div class="time">
-                                <span class="r">20</span>/<span class="y">07月</span>
-                            </div>
-                            <div class="title">yii2-bootstrap扩展之tab切换</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/post/detail/339.html" target="_blank">
-                            <div class="time">
-                                <span class="r">18</span>/<span class="y">07月</span>
-                            </div>
-                            <div class="title">Yii2 教程：统计网站的每日访问量</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/post/detail/338.html" target="_blank">
-                            <div class="time">
-                                <span class="r">18</span>/<span class="y">07月</span>
-                            </div>
-                            <div class="title">yii2扩展-twig教程</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/post/detail/337.html" target="_blank">
-                            <div class="time">
-                                <span class="r">15</span>/<span class="y">07月</span>
-                            </div>
-                            <div class="title">php设计模式六大原则（6）-开闭原则 </div>
-                        </a>
-                    </li>
-
+                    <?php endforeach;?>
                 </ul>
             </div>
         </div>
     </div>
 </div>
 </div>
+<?php
+$this->registerJs(
+'$("document").ready(function(){
+        $(".J_lastTime").find("li").eq(0).addClass("hov");
+        $(".J_lastTime li").hover(function(){
+            $(this).addClass("hov").siblings().removeClass("hov");
+        })
+    });'
+);?>

@@ -368,6 +368,7 @@ header.navbar .profile-image {
 
 #main-container {
     position: relative;
+    min-height: 800px;
 }
 
 .content-header h1 a,
@@ -1324,6 +1325,10 @@ footer {
     font-size: 1.2em;
     line-height: 1.5;
     padding: 30px 0 !important;
+    /*position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;*/
 }
 
 

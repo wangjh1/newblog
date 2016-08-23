@@ -15,6 +15,7 @@ use yii\filters\AccessControl;
 use backend\models\News;
 use backend\models\WebMenu;
 use common\library\UnlimitCat;
+use yii\db\Query;
 /**
  * Site controller
  */
@@ -91,10 +92,21 @@ class SiteController extends Controller
         $view = Yii::$app->view;
         $view -> params['layoutData'] = $rows;*/
 
+        $data = (new Query())
+            ->select(['body', 'title'])
+            ->from('web_content_post')
+            ->join('LEFT JOIN','web_content','web_content_post.content_id = web_content.id')
+            ->where(['web_content.headline'=>6])
+            //->offset(5)
+            //->limit(10)
+            ->all();
+        //print_r($data);die;
+
         $model = new News();
         $news = $model::find()->all();
         return $this->render('indexs', [
             'news' => $news,
+            'data' => $data,
         ]);
     }
 

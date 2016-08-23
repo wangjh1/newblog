@@ -3,8 +3,9 @@
 namespace frontend\controllers;
 
 use Yii;
-use frontend\models\Post;
-class PostController extends \yii\web\Controller
+use frontend\models\Page;
+
+class PageController extends \yii\web\Controller
 {
     /*
      *
@@ -14,16 +15,16 @@ class PostController extends \yii\web\Controller
     {
 
         //热门浏览
-        $hot = Post::getHot();
+        $hot = Page::getHot();
         //文章列表
-        $post = Post::getIndex($cat);
+        $Page = Page::getIndex($cat);
         //推荐
-        $recommend = Post::getRecommend();
+        $recommend = Page::getRecommend();
         //分类
-        $cat = Post::getCat();
+        $cat = Page::getCat();
 
         return $this->render('index', [
-            'post' => $post,
+            'Page' => $Page,
             'hot' => $hot,
             'recommend' => $recommend,
             'cat' => $cat,
@@ -35,13 +36,12 @@ class PostController extends \yii\web\Controller
      */
     public function actionDetail($id)
     {
-        //$post = new WebContentPost();
-        $data =Post::getDetail($id);
-        $new = Post::getNew();
+        //$Page = new WebContentPage();
+        $data =Page::getDetail($id);
+
         //print_r($new);die;
         return $this->render('detail', [
             'data' => $data,
-            'new' => $new,
         ]);
     }
 

@@ -317,6 +317,28 @@ a.desc:after {
 .new ul li i{
     color:#f1504f;
 }
+.sort {
+    margin-right: 8px;
+    padding: 2px 7px;
+    top: -1px;
+    color: #fff;
+    background-color: #bbb;
+}
+.sort-1 {
+    background-color:#fd8c84;
+    line-height:24px;
+}
+
+.sort-2 {
+    background-color:#5cb85c;
+    line-height:24px;
+}
+
+.sort-3 {
+    background-color:#5bc0de;
+    line-height:24px;
+}
+
 /*最新教程*/
 .last-post ul .time {float: left;width: 78px;height: 36px;line-height: 36px;text-align: center;color: #616161;font-size: 12px;background: #F2F2F2;font-family: arial;}
 .last-post ul .title {height: 36px;line-height: 18px;overflow: hidden;font-size: 14px;color: #3f3f3f;padding-left: 12px;}
