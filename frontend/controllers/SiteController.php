@@ -187,7 +187,7 @@ class SiteController extends Controller
     }*/
     public function actionSignup()
     {
-        $mail = \Yii::$app->mailer->compose()
+        /*$mail = \Yii::$app->mailer->compose()
             ->setFrom(['627658543@qq.com' => 'Yii 中文网'])
             ->setTo('2880326171@qq.com')
             ->setSubject('邮件发送配置')
@@ -197,7 +197,7 @@ class SiteController extends Controller
         if($mail)
             echo 'success';
         else
-            echo 'fail';
+            echo 'fail';*/
 
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
