@@ -48,7 +48,7 @@ class WebContentController extends Controller
                 'class' => 'common\widgets\file_upload\UploadAction',     //这里扩展地址别写错
                 'config' => [
                     //'imagePathFormat' => dirname(Yii::$app->request->getScriptFile())."/image/{yyyy}{mm}{dd}/{time}{rand:6}",
-                    'imagePathFormat' => Yii::$app->request->getBaseUrl()."/uploads/image/{yyyy}{mm}{dd}/{time}{rand:6}",
+                    'imagePathFormat' => Yii::$app->request->getBaseUrl()."/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}",
                 ],
             ],
         ];
