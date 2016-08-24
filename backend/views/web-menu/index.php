@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <td><?= Html::encode($val['sort_num']) ?></td>
                 <td>
                     <?php
-                    $url=Url::to(['changestatu', 'id' => $val['id'], 'act'=> Yii::$app->controller->action->id, 'status' =>$val['status']]);//审核状态为1
+                    $url=Url::to(['changestatu', 'id' => $val['id'], 'act'=> Yii::$app->controller->action->id, 'status' =>$val['status'], 'pid' => Yii::$app->request->get('id')]);//审核状态为1
                     if ($val['status']) :?>
                         <?= Html::a('已启用', $url,['class' =>  'btn btn-success']) ?>
                     <?php else:?>

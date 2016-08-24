@@ -107,6 +107,16 @@ class WebMenuController extends Controller
         }
     }
 
+    public function actionChangestatu($id)
+    {
+        $model = $this->findModel($id);
+        $_GET['status'] == 0 ? $model->status = 1 : $model->status = 0;
+        if ($model->save())
+        {
+            return $this->redirect([$_GET['act'], 'id' => $_GET['pid']]);
+        }
+
+    }
     /**
      * Deletes an existing WebMenu model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

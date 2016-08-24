@@ -33,9 +33,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <!-- small box -->
             <div class="small-box bg-green">
                 <div class="inner">
-                    <h3>53<sup style="font-size: 20px">%</sup></h3>
+                    <h3>53</h3>
 
-                    <p>Bounce Rate</p>
+                    <p>今日网站访问量</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-stats-bars"></i>
@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="inner">
                     <h3>44</h3>
 
-                    <p>用户访问量</p>
+                    <p>注册用户</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-person-add"></i>
