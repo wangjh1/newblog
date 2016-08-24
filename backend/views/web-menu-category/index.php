@@ -54,7 +54,7 @@ Modal::end();
 
     <p>
         <?php
-        echo Html::a('添加分类', '', [
+        echo Html::a('添加菜单', '', [
             'id' => 'create',
             'data-toggle' => 'modal',
             'data-target' => '#create-modal',

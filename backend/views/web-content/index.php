@@ -9,7 +9,8 @@ use backend\models\WebContentSearch;
 /* @var $searchModel backend\models\WebContentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Web Contents');
+$this->title = Yii::$app->controller->action->id == 'post' ? '文章列表' : '页面管理';
+$buttum = Yii::$app->controller->action->id == 'post' ? '添加文章' : '添加页面';
 $this->params['breadcrumbs'][] = $this->title;
 // 更新操作
 Modal::begin([
@@ -34,7 +35,7 @@ Modal::end();
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', '添加页面'), ['create', 'act' => Yii::$app->controller->action->id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', $buttum), ['create', 'act' => Yii::$app->controller->action->id], ['class' => 'btn btn-success'])?>
         <?= Html::a('设置', '', [
             'id' => 'setting',
             'data-toggle' => 'modal',
