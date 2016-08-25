@@ -129,4 +129,13 @@ return array (
       '@kartik/editable' => $vendorDir . '/kartik-v/yii2-editable',
     ),
   ),
+  'yiisoft/yii2-redis' =>
+      array (
+          'name' => 'yiisoft/yii2-redis',
+          'version' => '2.2.0.0',
+          'alias' =>
+              array (
+                  '@yii/redis' => $vendorDir . '/yiisoft/yii2-redis',
+              ),
+      ),
 );
