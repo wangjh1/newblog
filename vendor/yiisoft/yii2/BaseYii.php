@@ -93,7 +93,7 @@ class BaseYii
      */
     public static function getVersion()
     {
-        return '2.0.4-dev';
+        return '2.0.6';
     }
 
     /**
@@ -464,7 +464,7 @@ class BaseYii
      */
     public static function powered()
     {
-        return 'Powered by <a href="http://front.wangjinhao.cn" rel="external">WANG</a>';
+        return 'Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a>';
     }
 
     /**
